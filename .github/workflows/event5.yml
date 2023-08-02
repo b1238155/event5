@@ -1,0 +1,31 @@
+name: Event4
+
+on:
+  pull_request:
+    types:
+      - opened
+  push:
+    branches:
+         - main
+         - 'dev-*'
+         - 'feat/**'
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Output github event
+        run: echo "${{ toJSON(github.event) }}"
+
+      - name: Get code
+        uses: actions/checkout@v3
+          
+      - name: Install dependencies
+        run: npm install
+         
+      - name: Build
+        run: npm run build
+         
+      - name: Deploy
+        run: echo "Deploying"
