@@ -1,14 +1,21 @@
-name: Event4
+name: Event5
 
 on:
   pull_request:
     types:
       - opened
+    branches:
+               - main
+               - 'dev-*'
+               - 'feat/**'
+        
   push:
     branches:
          - main
          - 'dev-*'
          - 'feat/**'
+    paths:
+        - '**.js'
 
 jobs:
   Deploy:
